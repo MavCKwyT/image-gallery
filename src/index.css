@@ -13,3 +13,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.progress-bar {
+  height: 5px;
+  background: blue;
+  margin-top: 20px;
+}
+
