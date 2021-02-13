@@ -1,0 +1,13 @@
+.app {
+    background-color: #fafafa;
+}
+
+.app__header {
+    padding: 5px;
+    background-color: white;
+    border: 1px solid lightgray;
+}
+
+.app__form {
+    margin-bottom: 15px;
+}
