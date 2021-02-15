@@ -22,9 +22,6 @@ class App extends React.Component {
           id: doc.id, // get id from document column
           post: doc.data(),
         }));
-        // const dataFromCloudFirestore = snapshot.docs.map((doc) => (
-        //   console.log(doc.data())
-        // ));
         this.setState({ posts: dataFromCloudFirestore });
       });
   }
@@ -45,7 +42,8 @@ class App extends React.Component {
               posts.map(({ id, post }) => (
                 <Post
                   key={id}
-                  caption={post.caption}
+                  postId={id}
+                  comment={post.comment}
                   imageUrl={post.imageUrl}
                 />
               ))

@@ -8,7 +8,7 @@ class UploadForm extends React.Component {
     super(props);
     this.state = {
       image: null,
-      caption: '',
+      comment: '',
       progress: 0,
     };
   }
@@ -21,10 +21,10 @@ class UploadForm extends React.Component {
   }
 
   handleUpload = () => {
-    const { image, caption } = this.state;
+    const { image, comment } = this.state;
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
-    // listener
-    uploadTask.on( // https://firebase.google.com/docs/reference/js/firebase.storage.UploadTask#on
+    // https://firebase.google.com/docs/reference/js/firebase.storage.UploadTask#on
+    uploadTask.on(
       'state_changed',
       (snapshot) => {
         // progress function
@@ -45,11 +45,11 @@ class UploadForm extends React.Component {
             // post image inside db
             db.collection('posts').add({
               timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-              caption,
+              comment,
               imageUrl,
             });
             this.setState({ image: null });
-            this.setState({ caption: '' });
+            this.setState({ comment: '' });
             this.setState({ progress: 0 });
           });
       },
@@ -57,15 +57,15 @@ class UploadForm extends React.Component {
   }
 
   render() {
-    const { caption, progress } = this.state; // this.state.file -> { ... }
+    const { comment, progress } = this.state; // this.state.file -> { ... }
     return (
       <form className="form">
         <progress value={progress} max="100" />
         <input
           type="text"
-          placeholder="Enter a caption..."
-          onChange={(event) => this.setState({ caption: event.target.value })}
-          value={caption}
+          placeholder="Enter a comment..."
+          onChange={(event) => this.setState({ comment: event.target.value })}
+          value={comment}
         />
         <input type="file" onChange={this.handleChange} />
         <button type="button" onClick={this.handleUpload}>Upload</button>
