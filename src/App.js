@@ -17,33 +17,28 @@ class App extends React.Component {
     db.collection('posts') // collection name in Cloud Firestore
     // causes a callback any time when changes happen in Cloud FireStore
       .onSnapshot((snapshot) => {
-        // get data from document column
-        const dataFromCloudFirestore = snapshot.docs.map((doc) => ({
-          id: doc.id, // get id from document column
+        // get posts
+        const postsFromCloudFirestore = snapshot.docs.map((doc) => ({
+          id: doc.id,
           post: doc.data(),
         }));
-        this.setState({ posts: dataFromCloudFirestore });
+        this.setState({ posts: postsFromCloudFirestore });
       });
   }
 
   render() {
-    // eslint-disable-next-line no-unused-vars
     const { posts } = this.state; // this.props.posts -> [{...}, {...}]
     return (
       <div className="app">
-        <div className="app__header">
-          Image gallery
-        </div>
         <div className="app__form">
           <UploadForm />
         </div>
-        <div>
+        <div className="posts-container">
           {
               posts.map(({ id, post }) => (
                 <Post
                   key={id}
                   postId={id}
-                  comment={post.comment}
                   imageUrl={post.imageUrl}
                 />
               ))

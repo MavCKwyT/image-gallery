@@ -1,3 +1,4 @@
+
 .post {
     max-width: 500px;
     background-color: white;
@@ -10,9 +11,16 @@
     object-fit: contain;
 }
 
-.post__comment {
+.post__comments {
     font-weight: normal;
     padding: 5px;
+}
+
+.comment {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
 }
 
 .post__commentBox {
@@ -31,4 +39,10 @@
     flex: 0;
     border: none;
     border-top: 1px solid lightgray;
+}
+
+.deletePostButton {
+    height: 20px;
+    position: absolute;
+    left: 500px
 }

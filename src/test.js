@@ -7,19 +7,52 @@
 //   return [state, setState];
 // };
 
-// const promise = new Promise((resolve) => {
-//   setTimeout(() => resolve(1), 1000);
-// }).then((res) => console.log(res + 1));
+// async actions - starts now but finish later
+//---------------
+// promise
+// function showLogPromise() {
+//   return new Promise((resolve) => {
+//     resolve(1);
+//   });
+// }
+
+// showLogPromise().then((result) => console.log(result + 1));
+// --------------
+// callback
+// function showLogCallback(callback) {
+//   const val = 1;
+//   callback(val);
+// }
+// function callBackFunc(result) {
+//   console.log(result + 1);
+// }
 //
-// console.log(promise);
+// showLogCallback(callBackFunc);
 
-function showLog(val, callback) {
-  const totalSum = val + 1;
-  callback(totalSum);
-}
+// ------------------
 
-function sum(totalSum) {
-  console.log(totalSum + 0);
-}
-
-showLog(1, sum);
+// function Cat(age) {
+//   this.age = age;
+//   this.eat = function () {
+//     return 'food';
+//   };
+// }
+// const max = new Cat(8);
+// console.log(max);
+//
+// // ------------------
+//
+// class CatEs6 {
+//   constructor(age) {
+//     this.age = age;
+//   }
+//
+//     eat = function () {
+//       return 'food';
+//     }
+// }
+//
+// const leo = new CatEs6(12);
+// console.log(leo);
+//
+// // ------------------
